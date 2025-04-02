@@ -12,12 +12,32 @@ const geistMono = Geist_Mono({
 });
 
 export default function Home() {
+  let var_name = "Bertin";
   return (
-      <div  className="flex flex-col items-center justify-center min-h-screen p-4 bg-gray-100">
-        <header className="flex items-center justify-between w-full max-w-4xl p-4 bg-white shadow-md">
+      <div  className="">
+        <header className="flex ">
           {/*header section */}
         </header>
-        <main>
+        <main> 
+        <div className="flex navigation">
+          <nav className="flex flex-col space-y-2">
+            <a href="/mood" className="text-blue-600 hover:underline">Mood</a>
+            <a href="/explore" className="text-blue-600 hover:underline">Explore</a>
+            <a href="/myVibe" className="text-blue-600 hover:underline">My Vibe</a>
+            <a href="/custom" className="text-blue-600 hover:underline">Create Your Vibe</a>
+          </nav>
+        </div>
+          <div className="Welcome">
+            <h1>Welcome </h1>
+            <p>{var_name}</p>
+
+          </div>
+          <div className="msg">
+
+          </div>
+          <div className="logo">
+
+          </div>
           {/*main section*/}
         </main>
           <footer className="flex items-center justify-between w-full max-w-4xl p-4 bg-white shadow-md">
