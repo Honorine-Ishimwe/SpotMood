@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
-
+import SpotifyPlayer from "./SpotifyPlayer"; // Import the SpotifyPlayer component
+import SpotifyPlaylist from "@/pages/home/SpotifyPlaylist";
 const geistSans = Geist({
     variable: "--font-geist-sans",
     subsets: ["latin"],
@@ -13,6 +14,8 @@ const geistMono = Geist_Mono({
 
 export default function Home() {
     let var_name = "Bertin";
+    let playlist;  // tbd later
+    const playlistId = "37i9dQZF1EIffCAzWcCcGC";
     return (
         <div className="">
             <header className="flex ">
@@ -39,8 +42,14 @@ export default function Home() {
                         <p>How is the day going?</p>
                     </div>
 
-                    <div className="w-full md:w-4/10 lg:w-4/10 p-2 border-2">
-                        <p>This is your playlist according to your mood</p>
+                    <div id={playlist} className="w-full md:w-4/10 lg:w-4/10 p-2 border-2">
+                        <SpotifyPlaylist playlist_id={playlistId}
+                            uri="spotify:playlist:5AqjYFYdNjB10KIx6Y58Vs"
+                            width={'100%'}
+                            height={'600'}>
+                        </SpotifyPlaylist>
+
+                        {/*<SpotifyPlayer uri="spotify:playlist:5AqjYFYdNjB10KIx6Y58Vs" width={'100%'} height={'380'} />*/}
                     </div>
                 </div>
 
