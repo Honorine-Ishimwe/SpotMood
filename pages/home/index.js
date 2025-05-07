@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { useState } from 'react';
+import MiddleContent from './components/MiddleContent'; 
 import { Geist, Geist_Mono } from "next/font/google";
 import SpotifyPlayer from "./SpotifyPlayer"; // Import the SpotifyPlayer component
 import SpotifyPlaylist from "@/pages/home/SpotifyPlaylist";
@@ -16,30 +18,30 @@ export default function Home() {
     let var_name = "Bertin";
     let playlist;  // tbd later
     const playlistId = "37i9dQZF1EIffCAzWcCcGC";
+    const [navChosen, setChooseNav] = useState("default");
     return (
-        <div className="">
+        <div className="min-h-screen text-white from-blue-900 to-black-700 bg-gradient-to-br">
             <header className="flex ">
                 {/*header section */}
             </header>
 
             <main>
-                <div className="Welcome">
-                    <h1>Welcome </h1>
-                    <p>{var_name}</p>
+                <div className="text-white text-center p-10 font-bold text-5xl">
+                    <h1>Welcome {var_name} !</h1>
                 </div>
 
                 <div className="flex flex-wrap  ">
                     <div className="w-full md:w-3/10 lg:w-3/10 p-2 border-2">
                         <nav className="flex flex-col space-y-2">
-                            <a href="/mood" className="text-blue-600 hover:underline">Mood</a>
-                            <a href="/explore" className="text-blue-600 hover:underline">Explore</a>
-                            <a href="/myVibe" className="text-blue-600 hover:underline">My Vibe</a>
-                            <a href="/custom" className="text-blue-600 hover:underline">Create Your Vibe</a>
+                            <button onClick={() => setChooseNav("Mood")} className="bg-green-900 text-white text-lg font-semibold py-6 px-6 rounded-md shadow hover:bg-green-800 transition-colors m-3 px">Mood</button>
+                            <button onClick={() => setChooseNav("Explore")} className="bg-green-900 text-white text-lg font-semibold py-6 px-6 rounded-md shadow hover:bg-green-800 transition-colors m-3 px">Explore</button>
+                            <button onClick={() => setChooseNav("My Vibe")} className="bg-green-900 text-white text-lg font-semibold py-6 px-6 rounded-md shadow hover:bg-green-800 transition-colors m-3 px">My Vibe</button>
+                            <button onClick={() => setChooseNav("Create Your Vibe")} className="bg-green-900 text-white text-lg font-semibold py-6 px-6 rounded-md shadow hover:bg-green-800 transition-colors m-3 px">Create Your Vibe</button>
                         </nav>
                     </div>
 
                     <div className="w-full md:w-3/10 lg:w-3/10 p-2 border-2">
-                        <p>How is the day going?</p>
+                    <MiddleContent mood={navChosen} />
                     </div>
 
                     <div id={playlist} className="w-full md:w-4/10 lg:w-4/10 p-2 border-2">
@@ -53,7 +55,7 @@ export default function Home() {
                     </div>
                 </div>
 
-                {/*main section*/}
+                
             </main>
 
             <footer></footer>
