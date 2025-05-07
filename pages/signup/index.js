@@ -19,7 +19,6 @@ export default function Signup() {
                 <button type="submit" className="bg-blue-400 text-white py-2 px-4 rounded-xl block mx-auto">
                     Sign Up
                 </button>
-                 {/*add sign up with google button*/}
                 <button type="button" className="bg-blue-400 text-white py-2 px-4 rounded-xl block mx-auto mt-4">
                     Sign Up with Google
                 </button>
