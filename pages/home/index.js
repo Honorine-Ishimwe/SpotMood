@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useState } from 'react';
-import MiddleContent from './components/MiddleContent'; 
+import MiddleContent from './middleContent'; 
 import { Geist, Geist_Mono } from "next/font/google";
 import SpotifyPlayer from "./SpotifyPlayer"; // Import the SpotifyPlayer component
 import SpotifyPlaylist from "@/pages/home/SpotifyPlaylist";
