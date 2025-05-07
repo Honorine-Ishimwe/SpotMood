@@ -12,8 +12,8 @@ export default function App({ Component, pageProps }) {
 
   return (
       <>
-          <script src="https://requirejs.org/docs/release/2.1.15/minified/require.js" async></script>
-          <script src="https://rawgit.com/ironwallaby/delaunay/master/delaunay.js" async></script>
+          <Script src="https://requirejs.org/docs/release/2.1.15/minified/require.js" strategy="afterInteractive" async />
+          <Script src="https://rawgit.com/ironwallaby/delaunay/master/delaunay.js" strategy="afterInteractive" async />
 
           <canvas id="stars" width="100%" height="100%"></canvas>
           <Component {...pageProps} />
