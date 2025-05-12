@@ -97,7 +97,7 @@ function init() {
     //console.log(JSON.stringify(points));
 
     // Delaunay triangulation
-    //var Delaunay = require('delaunay-fast');
+    var Delaunay = require('delaunay-fast');
     vertices = Delaunay.triangulate(points);
     //console.log(JSON.stringify(vertices));
     // Create an array of "triangles" (groups of 3 indices)

@@ -1,9 +1,37 @@
+import { useState } from "react";
+
 
 export default function Signup() {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [message, setMessage] = useState('');
+
+    const handleSignUp = async (e) => {
+        e.preventDefault();
+        if (!email || !password) {
+            setMessage('Fields cannot be empty.');
+            return;
+        }
+        const res = await fetch('/api/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, password }),
+        });
+
+        const data = await res.json();
+        if (data.success) {
+            setMessage('Sign up successful!');
+        } else {
+            setMessage(data.message || 'Sign up failed');
+        }
+    }
     return(
+       
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
             <h1 className="text-3xl font-bold mb-4">Sign Up</h1>
-            <form className="bg-white p-6 rounded shadow-md w-full max-w-sm">
+            <form className="bg-white p-6 rounded shadow-md w-full max-w-sm" onSubmit={handleSignUp}>
                 <div className="mb-4">
                     <label htmlFor="username" className="block text-gray-700">Username</label>
                     <input type="text" id="username" className="border rounded w-full py-2 px-3" />

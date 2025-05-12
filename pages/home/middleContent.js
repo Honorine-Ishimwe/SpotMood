@@ -11,7 +11,6 @@ export default function MiddleContent({navChosen}) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Here, you can use the selectedMood state to perform actions like fetching playlists
     console.log(`Selected mood: ${selectedMood}`);
   };
 
