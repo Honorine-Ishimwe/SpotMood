@@ -1,4 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
+
 import { Geist, Geist_Mono } from "next/font/google";
 
 const geistSans = Geist({
@@ -12,11 +15,41 @@ const geistMono = Geist_Mono({
 });
 
 export default function Login() {
+const [email, setEmail] = useState("");
+const [password, setPassword] = useState("");
+const [message, setMessage] = useState('');
+
+const handleLogin = async (e) => {
+  e.preventDefault();
+  if (!email || !password) {
+    setMessage('Please fill in all fields.');
+    return;
+  }
+const res = await fetch('/api/login',{
+  method:'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.strongify({email, password})
+})
+
+const data = await res.json();
+if (data.success) {
+  setMessage('Login successful!');
+} else {
+  setMessage(data.message || 'Login failed');
+  router.push('/home'); 
+}
+
+};
+
+
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
     <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
       <h1 className="text-2xl font-bold mb-6 text-center text-black">Login</h1>
-      <form className="space-y-4">
+      <form className="space-y-4" onSubmit={handleLogin}>
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-gray-700">
             Email
@@ -48,10 +81,10 @@ export default function Login() {
       </form>
       <div className="mt-4 text-center">
         <p className="text-sm text-gray-600">
-          Don't have an account? <br />
-          <a href="/register" className="text-indigo-600 hover:underline">
-            Register
-          </a>
+           Don&apos;t have an account? <br />
+          <Link href="/signup" className="text-indigo-600 hover:underline">
+            Sign Up
+          </Link>
         </p>
     </div>
     </div>
