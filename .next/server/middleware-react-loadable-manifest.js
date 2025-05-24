@@ -1,0 +1,1 @@
+self.__REACT_LOADABLE_MANIFEST="{\"pages/_app.js -> @/src/background.js\":{\"id\":\"pages/_app.js -> @/src/background.js\",\"files\":[\"static/chunks/_pages-dir-browser_src_background_js.js\"]}}"
