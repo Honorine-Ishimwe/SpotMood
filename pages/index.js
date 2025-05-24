@@ -87,6 +87,14 @@ if (data.success) {
           </Link>
         </p>
     </div>
+    <div className="mt-4 text-center text-black">
+      <p>
+        <a href="https://accounts.spotify.com/authorize?client_id=7c605d1f62a6410bb41b0d14407c4ebd&response_type=code&redirect_uri=https://spotmood.vercel.app/api/callback
+&scope=user-read-private%20user-read-email"
+target="_blank"
+rel="noopener noreferrer">Login With Spotify</a>
+      </p>
+    </div>
     </div>
     </div>
   );
