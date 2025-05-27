@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 import { Geist, Geist_Mono } from "next/font/google";
+import  {useSession, signIn, signOut, SessionProvider} from "next-auth/react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -42,7 +43,6 @@ if (data.success) {
 }
 
 };
-
 
 
   return (
@@ -89,12 +89,17 @@ if (data.success) {
     </div>
     <div className="mt-4 text-center text-black">
       <p>
-        <a href="https://accounts.spotify.com/authorize?client_id=${process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID}&response_type=code&redirect_uri=https://spotmood.vercel.app/api/callback&scope=user-read-private user-read-email"
-target="_blank"
-rel="noopener noreferrer">Login With Spotify</a>
+        <button
+          onClick={() => signIn('spotify' , { callbackUrl: '/home' })} // Uncomment this line to enable Spotify login
+          //   onClick={() => signIn('spotify', { callbackUrl: '/api/auth/callback/spotify' })}
+          className="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+        >
+          Login With Spotify
+        </button>
       </p>
     </div>
     </div>
     </div>
   );
 }
+

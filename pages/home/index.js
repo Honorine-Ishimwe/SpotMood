@@ -4,6 +4,24 @@ import MiddleContent from './middleContent';
 import { Geist, Geist_Mono } from "next/font/google";
 import SpotifyPlayer from "./SpotifyPlayer"; // Import the SpotifyPlayer component
 import SpotifyPlaylist from "@/pages/home/SpotifyPlaylist";
+import {getSession, useSession} from "next-auth/react";
+// function below is for server-side authentication check. redirect to home page if not authenticated.
+export async function getServerSideProps(context) {
+    const session = await getSession(context);
+    if (!session) {
+        return {
+            redirect: {
+                destination: "/",
+                permanent: false,
+            },
+        };
+    }
+    return {
+        props: { session },
+    };
+}
+// end of server-side authentication check
+
 const geistSans = Geist({
     variable: "--font-geist-sans",
     subsets: ["latin"],
