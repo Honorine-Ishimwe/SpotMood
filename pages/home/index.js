@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import MiddleContent from './middleContent'; 
 import { Geist, Geist_Mono } from "next/font/google";
 import SpotifyPlayer from "./SpotifyPlayer"; // Import the SpotifyPlayer component
@@ -34,8 +35,18 @@ const geistMono = Geist_Mono({
 
 export default function Home() {
     let var_name = "Bertin";
-    let playlist;  // tbd later
-    const playlistId = "37i9dQZF1EIffCAzWcCcGC";
+    let playlist;  
+    const router = useRouter();
+    const [accessToken, setAccessToken] = useState(null);
+  
+    useEffect(() => {
+      const queryToken = router.query.access_token;
+      if (queryToken) {
+        setAccessToken(queryToken);
+      }
+    }, [router.query.access_token]);
+
+    const [playlistId, setPlaylistId] = useState("37i9dQZF1EIffCAzWcCcGC"); // default playlist
     const [navChosen, setChooseNav] = useState("default");
     return (
         <div className="min-h-screen text-white from-blue-900 to-black-700 bg-gradient-to-br">
@@ -59,12 +70,12 @@ export default function Home() {
                     </div>
 
                     <div className="w-full md:w-3/10 lg:w-3/10 p-2 border-2">
-                    <MiddleContent mood={navChosen} />
+                    <MiddleContent navChosen={navChosen} setPlaylistId={setPlaylistId} token={token} />
                     </div>
 
                     <div id={playlist} className="w-full md:w-4/10 lg:w-4/10 p-2 border-2">
                         <SpotifyPlaylist playlist_id={playlistId}
-                            uri="spotify:playlist:5AqjYFYdNjB10KIx6Y58Vs"
+                            uri={`spotify:playlist:${playlistId}`}
                             width={'100%'}
                             height={'600'}>
                         </SpotifyPlaylist>
