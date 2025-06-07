@@ -70,7 +70,7 @@ export default function Home() {
                     </div>
 
                     <div className="w-full md:w-3/10 lg:w-3/10 p-2 border-2">
-                    <MiddleContent navChosen={navChosen} setPlaylistId={setPlaylistId} token={token} />
+                    <MiddleContent navChosen={navChosen} setPlaylistId={setPlaylistId} token={accessToken} />
                     </div>
 
                     <div id={playlist} className="w-full md:w-4/10 lg:w-4/10 p-2 border-2">
