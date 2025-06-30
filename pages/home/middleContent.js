@@ -92,8 +92,8 @@ export default function MiddleContent({ navChosen, setPlaylistId, token }) {
             );
         default:
             return (
-                <div>
-                    <p>Welcome to the app!</p>
+                <div className="text-center p-10 font-bold text-xl hover:text-2xl transition-all duration-300">
+                    <p>Welcome to the SpotMood!</p>
                     <p>Select an option from the menu</p>
                 </div>
             );
