@@ -9,7 +9,7 @@ export default NextAuth({
             authorization: {
                 url: "https://accounts.spotify.com/authorize",
                 params: {
-                    redirect_uri: process.env.NEXTAUTH_URL + "/api/auth/callback/spotify",
+                   // redirect_uri: process.env.NEXTAUTH_URL + "/api/auth/callback/spotify",
                     scope:
                         "user-read-private user-read-email user-read-playback-state user-modify-playback-state user-read-currently-playing user-read-recently-played user-top-read user-read-playback-position user-library-modify user-library-read playlist-read-private playlist-read-collaborative playlist-modify-public playlist-modify-private ugc-image-upload app-remote-control streaming user-follow-modify user-follow-read",
                 },
@@ -78,9 +78,9 @@ export default NextAuth({
                 return {...token, error: "RefreshAccessTokenError"};
             }
         },
-        async session({session, token}) {
-            session.token = {
-                access_token: token.accessToken
+        async session({session, token}: any) {
+           session.token = {
+             access_token: token.accessToken
             };
             return session;
         },
