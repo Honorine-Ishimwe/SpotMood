@@ -24,6 +24,7 @@ export default function Home() {
     console.log("Spotify Access Token:", spotifyAccessToken);
     useEffect(() => {
         async function getOnRepeatPlaylistId() {
+            if (playlistId) return; // Skip if already set by mood
             let nextURL = "https://api.spotify.com/v1/me/playlists?limit=10&offset=0";
             while (nextURL) {
                 const res = await fetch(nextURL, {
@@ -54,7 +55,7 @@ export default function Home() {
         getOnRepeatPlaylistId();
 
 
-    }, [spotifyAccessToken]);
+    }, [spotifyAccessToken, playlistId]);
     // end of fetching user's random playlist
     const [navChosen, setChooseNav] = useState("default");
     return (
