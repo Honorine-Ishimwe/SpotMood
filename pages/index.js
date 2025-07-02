@@ -10,15 +10,7 @@ export default function Login() {
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState('');
 
-    const {data: session, status} = useSession();
-  console.log("session:", session);
-  console.log("status:", status);
 
-    // if login session is available, redirect to home page
-    if (status === "authenticated") {
-        console.log("User is authenticated, redirecting to home");
-        router.push('/home');
-    }
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -31,12 +23,13 @@ export default function Login() {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.strongify({email, password})
+            body: JSON.stringify({email, password})
         })
 
         const data = await res.json();
         if (data.success) {
             setMessage('Login successful!');
+            router.push('/home');
         } else {
             setMessage(data.message || 'Login failed');
             <Link href="/home"/>;
@@ -56,7 +49,9 @@ export default function Login() {
                         <input
                             type="email"
                             id="email-login"
-                            className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-black sm:text-sm"
                             placeholder="Enter your email"
                         />
                     </div>
@@ -67,7 +62,9 @@ export default function Login() {
                         <input
                             type="password"
                             id="password-login"
-                            className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-black sm:text-sm"
                             placeholder="Enter your password"
                         />
                     </div>
@@ -89,16 +86,14 @@ export default function Login() {
                 <div className="mt-4 text-center text-black">
                     <p>
                         <button
-                            onClick={() => signIn('spotify', {callbackUrl: '/home'})} // Uncomment this line to enable Spotify login
-                            //   onClick={() => signIn('spotify', { callbackUrl: '/api/auth/callback/spotify' })}
+                            onClick={() => signIn('spotify', {callbackUrl: '/home'})}
                             className="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
                         >
                             Login With Spotify
                         </button>
                     </p>
-                </div>
+                </div> 
             </div>
         </div>
     );
 }
-
